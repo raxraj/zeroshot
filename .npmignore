@@ -1,0 +1,25 @@
+# Source (dist/ is what gets published)
+src/
+.storybook/
+storybook-static/
+
+# Dev config
+*.stories.tsx
+*.test.tsx
+*.spec.tsx
+vitest.config.ts
+tailwind.config.ts
+postcss.config.js
+eslint.config.js
+tsconfig.json
+vite.config.ts
+
+# Docs (README.md is included via "files" in package.json)
+QUICKSTART.md
+PUBLISHING.md
+
+# Misc
+.git/
+.github/
+node_modules/
+*.tgz
