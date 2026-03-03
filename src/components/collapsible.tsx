@@ -2,7 +2,7 @@ import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { ChevronDown, ChevronRight } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 const Collapsible = React.forwardRef<
   React.ElementRef<typeof CollapsiblePrimitive.Root>,

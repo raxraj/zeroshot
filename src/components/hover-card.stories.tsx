@@ -86,12 +86,12 @@ export const Multiple: Story = {
     <div className="flex gap-4">
       <HoverCard>
         <HoverCardTrigger asChild>
-          <Button variant="link">@shadcn</Button>
+          <Button variant="link">@zeroshot</Button>
         </HoverCardTrigger>
         <HoverCardContent>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">@shadcn</h4>
-            <p className="text-sm text-muted-foreground">Creator of shadcn/ui.</p>
+            <h4 className="text-sm font-semibold">@zeroshot</h4>
+            <p className="text-sm text-muted-foreground">AI-native React component library.</p>
           </div>
         </HoverCardContent>
       </HoverCard>

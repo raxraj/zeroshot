@@ -18,7 +18,7 @@
  * ```
  */
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 /** Speed presets for streaming animations */
 type SpeedPreset = "slow" | "normal" | "fast" | "instant";

@@ -22,7 +22,7 @@
  * ```
  */
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 import { Inbox } from "lucide-react";
 
 export interface EmptyStateAction {

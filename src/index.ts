@@ -12,7 +12,7 @@
 import "./styles.css";
 
 // ─── Core utilities ─────────────────────────────────────────────────
-export { cn } from "./lib/utils";
+export { cn } from "./lib/cn";
 export { createComponent, createSimpleComponent } from "./lib/create-component";
 
 // ─── Manifest ───────────────────────────────────────────────────────

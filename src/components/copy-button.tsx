@@ -13,7 +13,7 @@
  */
 import * as React from "react";
 import { Check, Copy } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 export interface CopyButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   /**

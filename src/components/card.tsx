@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
+import { createComponent, createSimpleComponent } from "@/lib/create-component";
 
 /**
  * Props for the ZeroShot Card component (Config API mode).
@@ -49,7 +50,8 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   footer?: React.ReactNode;
 }
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
+const Card = createComponent<HTMLDivElement, CardProps>(
+  "Card",
   ({ className, title, description, footer, children, ...props }, ref) => {
     // Config API mode: title triggers auto-structure
     if (title) {
@@ -73,39 +75,39 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     );
   },
 );
-Card.displayName = "Card";
 
-const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const CardHeader = createComponent<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  "CardHeader",
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn("flex flex-col space-y-1.5 p-6", className)} {...props} />
   ),
 );
-CardHeader.displayName = "CardHeader";
 
-const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
+const CardTitle = createComponent<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
+  "CardTitle",
   ({ className, ...props }, ref) => (
     <h3 ref={ref} className={cn("text-2xl font-semibold leading-none tracking-tight", className)} {...props} />
   ),
 );
-CardTitle.displayName = "CardTitle";
 
-const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+const CardDescription = createComponent<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+  "CardDescription",
   ({ className, ...props }, ref) => (
     <p ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
   ),
 );
-CardDescription.displayName = "CardDescription";
 
-const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const CardContent = createComponent<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  "CardContent",
   ({ className, ...props }, ref) => <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />,
 );
-CardContent.displayName = "CardContent";
 
-const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const CardFooter = createComponent<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  "CardFooter",
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn("flex items-center p-6 pt-0", className)} {...props} />
   ),
 );
-CardFooter.displayName = "CardFooter";
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
+
