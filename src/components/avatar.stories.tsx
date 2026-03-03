@@ -16,8 +16,8 @@ type Story = StoryObj<typeof Avatar>;
 export const Default: Story = {
   render: () => (
     <Avatar>
-      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-      <AvatarFallback>CN</AvatarFallback>
+      <AvatarImage src="https://i.pravatar.cc/40?img=1" alt="User avatar" />
+      <AvatarFallback>ZS</AvatarFallback>
     </Avatar>
   ),
 };
@@ -43,19 +43,19 @@ export const Sizes: Story = {
   render: () => (
     <div className="flex items-center gap-4">
       <Avatar className="h-8 w-8">
-        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarImage src="https://i.pravatar.cc/32?img=2" />
         <AvatarFallback>SM</AvatarFallback>
       </Avatar>
       <Avatar className="h-10 w-10">
-        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarImage src="https://i.pravatar.cc/40?img=3" />
         <AvatarFallback>MD</AvatarFallback>
       </Avatar>
       <Avatar className="h-16 w-16">
-        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarImage src="https://i.pravatar.cc/64?img=4" />
         <AvatarFallback>LG</AvatarFallback>
       </Avatar>
       <Avatar className="h-20 w-20">
-        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarImage src="https://i.pravatar.cc/80?img=5" />
         <AvatarFallback>XL</AvatarFallback>
       </Avatar>
     </div>
@@ -66,8 +66,8 @@ export const Group: Story = {
   render: () => (
     <div className="flex -space-x-4">
       <Avatar className="border-2 border-background">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>SC</AvatarFallback>
+        <AvatarImage src="https://i.pravatar.cc/40?img=6" />
+        <AvatarFallback>AA</AvatarFallback>
       </Avatar>
       <Avatar className="border-2 border-background">
         <AvatarFallback>AB</AvatarFallback>
@@ -89,12 +89,12 @@ export const WithText: Story = {
   render: () => (
     <div className="flex items-center gap-4">
       <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>SC</AvatarFallback>
+        <AvatarImage src="https://i.pravatar.cc/40?img=7" />
+        <AvatarFallback>ZS</AvatarFallback>
       </Avatar>
       <div>
-        <p className="text-sm font-medium">shadcn</p>
-        <p className="text-sm text-muted-foreground">@shadcn</p>
+        <p className="text-sm font-medium">ZeroShot User</p>
+        <p className="text-sm text-muted-foreground">@zeroshot</p>
       </div>
     </div>
   ),

@@ -2,7 +2,8 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
+import { createSimpleComponent } from "@/lib/create-component";
 
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
@@ -67,29 +68,32 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, Varian
   onRemove?: () => void;
 }
 
-function Badge({ className, variant, label, dot, removable, onRemove, children, ...props }: BadgeProps) {
-  const content = children ?? label;
+const Badge = createSimpleComponent<BadgeProps>(
+  "Badge",
+  ({ className, variant, label, dot, removable, onRemove, children, ...props }) => {
+    const content = children ?? label;
 
-  return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props}>
-      {dot && (
-        <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
-      )}
-      {content}
-      {removable && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onRemove?.();
-          }}
-          className="ml-1 -mr-1 h-3.5 w-3.5 rounded-full hover:bg-foreground/20 inline-flex items-center justify-center"
-          aria-label={`Remove ${typeof content === "string" ? content : "badge"}`}
-        >
-          <X className="h-2.5 w-2.5" />
-        </button>
-      )}
-    </div>
-  );
-}
+    return (
+      <div className={cn(badgeVariants({ variant }), className)} {...props}>
+        {dot && (
+          <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+        )}
+        {content}
+        {removable && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemove?.();
+            }}
+            className="ml-1 -mr-1 h-3.5 w-3.5 rounded-full hover:bg-foreground/20 inline-flex items-center justify-center"
+            aria-label={`Remove ${typeof content === "string" ? content : "badge"}`}
+          >
+            <X className="h-2.5 w-2.5" />
+          </button>
+        )}
+      </div>
+    );
+  },
+);
 
 export { Badge, badgeVariants };

@@ -276,6 +276,358 @@ export const zeroShotManifest: ZeroShotManifest = {
         { title: "Setup", code: `<ToastProvider><App /><Toaster position="bottom-right" /></ToastProvider>` },
       ],
     },
+    // ─── Foundation Components ────────────────────────────────────────
+    {
+      name: "Accordion",
+      description: "Vertically stacked collapsible sections. Config API accepts an items array.",
+      category: "layout",
+      importPath: "zero-shot",
+      props: [
+        { name: "items", type: "AccordionItemDef[]", required: false, description: "Config API: array of { value, trigger, content, disabled? }" },
+        { name: "type", type: "'single' | 'multiple'", required: false, defaultValue: "'single'", description: "Whether one or multiple items can be open at once" },
+        { name: "collapsible", type: "boolean", required: false, defaultValue: "false", description: "When type='single', allows closing all items" },
+      ],
+      examples: [
+        { title: "Config API", code: `<Accordion type="single" collapsible items={[{ value: "q1", trigger: "What is ZeroShot?", content: "An AI-native React component library." }]} />` },
+      ],
+    },
+    {
+      name: "Alert",
+      description: "Contextual feedback message with optional icon, title, description and close button.",
+      category: "feedback",
+      importPath: "zero-shot",
+      props: [
+        { name: "variant", type: "'default' | 'destructive' | 'success' | 'warning' | 'info'", required: false, defaultValue: "'default'", description: "Visual severity style" },
+        { name: "title", type: "string", required: false, description: "Config API: alert title; auto-selects an icon based on variant" },
+        { name: "description", type: "string", required: false, description: "Config API: alert description text" },
+        { name: "icon", type: "ReactNode", required: false, description: "Override the auto-selected variant icon" },
+        { name: "closable", type: "boolean", required: false, defaultValue: "false", description: "Show a close button" },
+        { name: "onClose", type: "() => void", required: false, description: "Callback when close button is clicked" },
+      ],
+      examples: [
+        { title: "Config API", code: `<Alert variant="destructive" title="Error" description="Something went wrong." closable onClose={() => setVisible(false)} />` },
+      ],
+    },
+    {
+      name: "AlertDialog",
+      description: "Modal dialog that interrupts the user with important content requiring a decision.",
+      category: "overlay",
+      importPath: "zero-shot",
+      props: [
+        { name: "open", type: "boolean", required: false, description: "Controlled open state" },
+        { name: "onOpenChange", type: "(open: boolean) => void", required: false, description: "Callback when open state changes" },
+      ],
+      examples: [
+        { title: "Basic", code: `<AlertDialog><AlertDialogTrigger>Delete</AlertDialogTrigger><AlertDialogContent><AlertDialogTitle>Are you sure?</AlertDialogTitle><AlertDialogDescription>This cannot be undone.</AlertDialogDescription><AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction>Delete</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog>` },
+      ],
+    },
+    {
+      name: "Avatar",
+      description: "User profile image with automatic fallback to initials or placeholder.",
+      category: "display",
+      importPath: "zero-shot",
+      props: [
+        { name: "className", type: "string", required: false, description: "Size and shape overrides (e.g. h-12 w-12)" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Avatar><AvatarImage src="https://example.com/avatar.png" alt="User" /><AvatarFallback>JD</AvatarFallback></Avatar>` },
+      ],
+    },
+    {
+      name: "Badge",
+      description: "Small status label with optional dot indicator and removable button.",
+      category: "display",
+      importPath: "zero-shot",
+      props: [
+        { name: "variant", type: "'default' | 'secondary' | 'destructive' | 'success' | 'warning' | 'info' | 'outline'", required: false, defaultValue: "'default'", description: "Visual style" },
+        { name: "label", type: "string", required: false, description: "Config API: badge text" },
+        { name: "dot", type: "boolean", required: false, defaultValue: "false", description: "Show a status dot" },
+        { name: "removable", type: "boolean", required: false, defaultValue: "false", description: "Show a remove button" },
+        { name: "onRemove", type: "() => void", required: false, description: "Callback when remove button clicked" },
+      ],
+      examples: [
+        { title: "Config API", code: `<Badge label="Active" variant="success" dot />` },
+      ],
+    },
+    {
+      name: "Checkbox",
+      description: "Accessible checkbox input built on Radix UI.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "checked", type: "boolean | 'indeterminate'", required: false, description: "Controlled checked state" },
+        { name: "onCheckedChange", type: "(checked: boolean | 'indeterminate') => void", required: false, description: "Change callback" },
+        { name: "disabled", type: "boolean", required: false, defaultValue: "false", description: "Disable the checkbox" },
+      ],
+      examples: [
+        { title: "Basic", code: `<div className="flex items-center gap-2"><Checkbox id="accept" /><Label htmlFor="accept">Accept terms</Label></div>` },
+      ],
+    },
+    {
+      name: "DataTable",
+      description: "Sortable, filterable data table with pagination and row selection.",
+      category: "data",
+      importPath: "zero-shot",
+      props: [
+        { name: "columns", type: "DataTableColumn<T>[]", required: true, description: "Column definitions" },
+        { name: "data", type: "T[]", required: true, description: "Row data" },
+        { name: "searchable", type: "boolean", required: false, defaultValue: "false", description: "Show global search input" },
+        { name: "searchPlaceholder", type: "string", required: false, description: "Search input placeholder" },
+        { name: "pageSize", type: "number", required: false, defaultValue: "10", description: "Rows per page" },
+      ],
+      examples: [
+        { title: "Basic", code: `<DataTable columns={[{ key: "name", header: "Name" }, { key: "email", header: "Email" }]} data={users} searchable />` },
+      ],
+    },
+    {
+      name: "Dialog",
+      description: "Modal dialog with optional Config API for title, description and action buttons.",
+      category: "overlay",
+      importPath: "zero-shot",
+      props: [
+        { name: "open", type: "boolean", required: false, description: "Controlled open state" },
+        { name: "onOpenChange", type: "(open: boolean) => void", required: false, description: "Callback when open state changes" },
+        { name: "title", type: "string", required: false, description: "Config API: dialog title" },
+        { name: "description", type: "string", required: false, description: "Config API: dialog description" },
+        { name: "actions", type: "DialogAction[]", required: false, description: "Config API: array of { label, onClick, variant? } buttons" },
+      ],
+      examples: [
+        { title: "Config API", code: `<Dialog open={open} onOpenChange={setOpen} title="Confirm" description="Are you sure?" actions={[{ label: "Cancel", onClick: () => setOpen(false) }, { label: "Confirm", onClick: handleConfirm, variant: "default" }]} />` },
+      ],
+    },
+    {
+      name: "Drawer",
+      description: "Slide-in panel from the bottom (mobile-friendly) for menus, forms, or content.",
+      category: "overlay",
+      importPath: "zero-shot",
+      props: [
+        { name: "open", type: "boolean", required: false, description: "Controlled open state" },
+        { name: "onOpenChange", type: "(open: boolean) => void", required: false, description: "Change callback" },
+        { name: "direction", type: "'top' | 'bottom' | 'left' | 'right'", required: false, defaultValue: "'bottom'", description: "Drawer slide direction" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Drawer><DrawerTrigger>Open</DrawerTrigger><DrawerContent><DrawerHeader><DrawerTitle>Settings</DrawerTitle></DrawerHeader></DrawerContent></Drawer>` },
+      ],
+    },
+    {
+      name: "DropdownMenu",
+      description: "Context/action menu triggered by a button with nested sub-menus, checkboxes and radio items.",
+      category: "overlay",
+      importPath: "zero-shot",
+      props: [],
+      examples: [
+        { title: "Basic", code: `<DropdownMenu><DropdownMenuTrigger asChild><Button variant="outline">Options</Button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuItem>Profile</DropdownMenuItem><DropdownMenuItem>Settings</DropdownMenuItem></DropdownMenuContent></DropdownMenu>` },
+      ],
+    },
+    {
+      name: "Label",
+      description: "Accessible form label built on Radix UI.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "htmlFor", type: "string", required: false, description: "Associates the label with a form control" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Label htmlFor="email">Email address</Label>` },
+      ],
+    },
+    {
+      name: "Pagination",
+      description: "Page navigation component with previous/next and numbered page links.",
+      category: "navigation",
+      importPath: "zero-shot",
+      props: [],
+      examples: [
+        { title: "Basic", code: `<Pagination><PaginationContent><PaginationPrevious href="#" /><PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem><PaginationNext href="#" /></PaginationContent></Pagination>` },
+      ],
+    },
+    {
+      name: "Popover",
+      description: "Floating content panel anchored to a trigger element.",
+      category: "overlay",
+      importPath: "zero-shot",
+      props: [
+        { name: "open", type: "boolean", required: false, description: "Controlled open state" },
+        { name: "onOpenChange", type: "(open: boolean) => void", required: false, description: "Change callback" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Popover><PopoverTrigger asChild><Button>Open</Button></PopoverTrigger><PopoverContent>Content here</PopoverContent></Popover>` },
+      ],
+    },
+    {
+      name: "Progress",
+      description: "Linear progress indicator built on Radix UI.",
+      category: "feedback",
+      importPath: "zero-shot",
+      props: [
+        { name: "value", type: "number", required: false, description: "Progress value from 0 to 100" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Progress value={60} />` },
+      ],
+    },
+    {
+      name: "RadioGroup",
+      description: "Group of radio buttons built on Radix UI.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "value", type: "string", required: false, description: "Controlled selected value" },
+        { name: "onValueChange", type: "(value: string) => void", required: false, description: "Change callback" },
+      ],
+      examples: [
+        { title: "Basic", code: `<RadioGroup defaultValue="option-a"><div className="flex items-center gap-2"><RadioGroupItem value="option-a" id="a" /><Label htmlFor="a">Option A</Label></div></RadioGroup>` },
+      ],
+    },
+    {
+      name: "ScrollArea",
+      description: "Custom-styled scrollable container built on Radix UI.",
+      category: "layout",
+      importPath: "zero-shot",
+      props: [
+        { name: "className", type: "string", required: false, description: "Set a fixed height to enable scrolling" },
+      ],
+      examples: [
+        { title: "Basic", code: `<ScrollArea className="h-64"><div>{longContent}</div></ScrollArea>` },
+      ],
+    },
+    {
+      name: "Separator",
+      description: "Visual divider between sections, horizontal or vertical.",
+      category: "layout",
+      importPath: "zero-shot",
+      props: [
+        { name: "orientation", type: "'horizontal' | 'vertical'", required: false, defaultValue: "'horizontal'", description: "Separator direction" },
+        { name: "decorative", type: "boolean", required: false, defaultValue: "true", description: "Whether purely decorative (hides from accessibility tree)" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Separator />` },
+      ],
+    },
+    {
+      name: "Sheet",
+      description: "Side-anchored dialog panel (slide-in from edge) for settings and navigation.",
+      category: "overlay",
+      importPath: "zero-shot",
+      props: [
+        { name: "open", type: "boolean", required: false, description: "Controlled open state" },
+        { name: "onOpenChange", type: "(open: boolean) => void", required: false, description: "Change callback" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Sheet><SheetTrigger asChild><Button>Open</Button></SheetTrigger><SheetContent><SheetHeader><SheetTitle>Edit Profile</SheetTitle></SheetHeader></SheetContent></Sheet>` },
+      ],
+    },
+    {
+      name: "Skeleton",
+      description: "Loading placeholder that mimics content layout.",
+      category: "feedback",
+      importPath: "zero-shot",
+      props: [
+        { name: "className", type: "string", required: false, description: "Shape and size classes" },
+      ],
+      examples: [
+        { title: "Basic", code: `<div className="flex items-center gap-4"><Skeleton className="h-10 w-10 rounded-full" /><div className="space-y-2"><Skeleton className="h-4 w-48" /><Skeleton className="h-4 w-32" /></div></div>` },
+      ],
+    },
+    {
+      name: "Slider",
+      description: "Range slider input built on Radix UI.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "value", type: "number[]", required: false, description: "Controlled value array" },
+        { name: "defaultValue", type: "number[]", required: false, description: "Default value array" },
+        { name: "min", type: "number", required: false, defaultValue: "0", description: "Minimum value" },
+        { name: "max", type: "number", required: false, defaultValue: "100", description: "Maximum value" },
+        { name: "step", type: "number", required: false, defaultValue: "1", description: "Step increment" },
+        { name: "onValueChange", type: "(value: number[]) => void", required: false, description: "Change callback" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Slider defaultValue={[50]} max={100} step={1} />` },
+      ],
+    },
+    {
+      name: "Switch",
+      description: "Toggle switch input built on Radix UI.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "checked", type: "boolean", required: false, description: "Controlled checked state" },
+        { name: "onCheckedChange", type: "(checked: boolean) => void", required: false, description: "Change callback" },
+        { name: "disabled", type: "boolean", required: false, defaultValue: "false", description: "Disable the switch" },
+      ],
+      examples: [
+        { title: "Basic", code: `<div className="flex items-center gap-2"><Switch id="notifications" /><Label htmlFor="notifications">Notifications</Label></div>` },
+      ],
+    },
+    {
+      name: "Table",
+      description: "Accessible HTML table with styled header, body, footer, and caption.",
+      category: "data",
+      importPath: "zero-shot",
+      props: [],
+      examples: [
+        { title: "Basic", code: `<Table><TableHeader><TableRow><TableHead>Name</TableHead><TableHead>Email</TableHead></TableRow></TableHeader><TableBody><TableRow><TableCell>Alice</TableCell><TableCell>alice@example.com</TableCell></TableRow></TableBody></Table>` },
+      ],
+    },
+    {
+      name: "Textarea",
+      description: "Multi-line text input with optional label, error, helper text, and character counter.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "label", type: "string", required: false, description: "Config API: renders a label above the textarea" },
+        { name: "error", type: "string", required: false, description: "Error message with destructive styling" },
+        { name: "helperText", type: "string", required: false, description: "Helper text below the textarea" },
+        { name: "showCount", type: "boolean", required: false, defaultValue: "false", description: "Show character counter (requires maxLength)" },
+        { name: "maxLength", type: "number", required: false, description: "Maximum character count" },
+      ],
+      examples: [
+        { title: "Config API", code: `<Textarea label="Bio" placeholder="Tell us about yourself..." maxLength={500} showCount />` },
+      ],
+    },
+    {
+      name: "Tooltip",
+      description: "Floating label shown on hover or focus of a trigger element.",
+      category: "overlay",
+      importPath: "zero-shot",
+      props: [
+        { name: "content", type: "ReactNode", required: false, description: "Tooltip content" },
+        { name: "side", type: "'top' | 'bottom' | 'left' | 'right'", required: false, defaultValue: "'top'", description: "Side the tooltip appears on" },
+      ],
+      examples: [
+        { title: "Basic", code: `<TooltipProvider><Tooltip><TooltipTrigger asChild><Button variant="outline">Hover me</Button></TooltipTrigger><TooltipContent>Helpful information</TooltipContent></Tooltip></TooltipProvider>` },
+      ],
+    },
+    {
+      name: "Toggle",
+      description: "A two-state button that can be on or off.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "variant", type: "'default' | 'outline'", required: false, defaultValue: "'default'", description: "Visual style" },
+        { name: "size", type: "'default' | 'sm' | 'lg'", required: false, defaultValue: "'default'", description: "Size" },
+        { name: "pressed", type: "boolean", required: false, description: "Controlled pressed state" },
+        { name: "onPressedChange", type: "(pressed: boolean) => void", required: false, description: "Change callback" },
+      ],
+      examples: [
+        { title: "Basic", code: `<Toggle aria-label="Toggle bold"><Bold className="h-4 w-4" /></Toggle>` },
+      ],
+    },
+    {
+      name: "ToggleGroup",
+      description: "Group of toggle buttons where one or multiple can be selected.",
+      category: "form",
+      importPath: "zero-shot",
+      props: [
+        { name: "type", type: "'single' | 'multiple'", required: true, description: "Selection mode" },
+        { name: "value", type: "string | string[]", required: false, description: "Controlled value" },
+        { name: "onValueChange", type: "(value: string | string[]) => void", required: false, description: "Change callback" },
+      ],
+      examples: [
+        { title: "Basic", code: `<ToggleGroup type="single"><ToggleGroupItem value="left">Left</ToggleGroupItem><ToggleGroupItem value="center">Center</ToggleGroupItem><ToggleGroupItem value="right">Right</ToggleGroupItem></ToggleGroup>` },
+      ],
+    },
   ],
 };
 

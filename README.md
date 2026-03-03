@@ -315,4 +315,4 @@ MIT
 
 ## Acknowledgments
 
-ZeroShot is built on [Radix UI](https://www.radix-ui.com/), [Tailwind CSS](https://tailwindcss.com/), [Lucide](https://lucide.dev/), and inspired by [shadcn/ui](https://ui.shadcn.com/).
+ZeroShot is built on [Radix UI](https://www.radix-ui.com/), [Tailwind CSS](https://tailwindcss.com/), and [Lucide](https://lucide.dev/).

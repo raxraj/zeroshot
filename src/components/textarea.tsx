@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
+import { createComponent } from "@/lib/create-component";
 
 /**
  * Props for the ZeroShot Textarea component.
@@ -44,7 +45,8 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   showCount?: boolean;
 }
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+const Textarea = createComponent<HTMLTextAreaElement, TextareaProps>(
+  "Textarea",
   ({ className, label, error, helperText, showCount, maxLength, id, value, defaultValue, ...props }, ref) => {
     const textareaId = id || (label ? `zero-shot-textarea-${label.toLowerCase().replace(/\s+/g, "-")}` : undefined);
     const [charCount, setCharCount] = React.useState(() => {
@@ -117,6 +119,5 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     );
   },
 );
-Textarea.displayName = "Textarea";
 
 export { Textarea };

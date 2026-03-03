@@ -13,7 +13,7 @@
 import * as React from "react";
 import { X, CheckCircle2, AlertCircle, Info, AlertTriangle } from "lucide-react";
 import { useToast, type ToastVariant } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 const variantStyles: Record<ToastVariant, string> = {
   default: "border bg-background text-foreground",

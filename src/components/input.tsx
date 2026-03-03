@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
+import { createComponent } from "@/lib/create-component";
 
 /**
  * Props for the ZeroShot Input component.
@@ -54,7 +55,8 @@ export interface InputProps extends React.ComponentProps<"input"> {
   endAdornment?: React.ReactNode;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = createComponent<HTMLInputElement, InputProps>(
+  "Input",
   ({ className, type, label, error, helperText, startAdornment, endAdornment, id, ...props }, ref) => {
     const inputId = id || (label ? `zero-shot-input-${label.toLowerCase().replace(/\s+/g, "-")}` : undefined);
     const hasAdornment = startAdornment || endAdornment;
@@ -135,6 +137,5 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
-Input.displayName = "Input";
 
 export { Input };
