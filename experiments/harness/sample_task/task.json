@@ -1,0 +1,13 @@
+{
+  "id": "sample_task",
+  "title": "Fix formatDate utility",
+  "description": "The formatDate function in src/utils/formatDate.ts currently returns the raw ISO date string unchanged. Fix it so that formatDate('2026-03-12') returns 'Mar 12, 2026' and all tests in tests/formatDate.test.ts pass.",
+  "difficulty": "easy",
+  "category": "bugfix",
+  "files_to_edit": ["src/utils/formatDate.ts"],
+  "tests_command": "npm test",
+  "success_criterion": "All tests in tests/formatDate.test.ts pass (exit code 0).",
+  "user_prompt": "The function `formatDate` in `src/utils/formatDate.ts` is broken — it just returns the ISO date string unchanged instead of formatting it. Fix the function so that:\n- `formatDate('2026-03-12')` returns `'Mar 12, 2026'`\n- `formatDate('2026-01-05')` returns `'Jan 5, 2026'`\n- `formatDate('2025-12-31')` returns `'Dec 31, 2025'`\n\nDo not add any new dependencies. Return the complete fixed file content for `src/utils/formatDate.ts`.",
+  "context_files": ["src/utils/formatDate.ts", "tests/formatDate.test.ts"],
+  "tags": ["utility", "date-formatting", "unit-test"]
+}
