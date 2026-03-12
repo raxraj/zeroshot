@@ -141,7 +141,7 @@ class OpenAIAdapter:
     def __init__(self, model: str = "gpt-4o", **kwargs):
         self.model = model
         try:
-            import openai  # noqa: F401 — checked here for a clear error message
+            import openai  # noqa: F401 -- checked here for a clear error message
         except ImportError:
             raise ImportError(
                 "openai package not installed. Run: pip install openai"
