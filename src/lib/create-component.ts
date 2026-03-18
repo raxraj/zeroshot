@@ -56,7 +56,7 @@ export function createComponent<TElement, TProps extends object>(
  * );
  * ```
  */
-export function createSimpleComponent<TProps extends Record<string, unknown>>(
+export function createSimpleComponent<TProps extends object>(
   displayName: string,
   render: React.FC<TProps>,
 ) {

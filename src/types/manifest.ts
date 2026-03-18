@@ -56,6 +56,7 @@ export interface ZeroShotExample {
 export type ZeroShotCategory =
   | "primitive"
   | "layout"
+  | "display"
   | "feedback"
   | "overlay"
   | "navigation"
