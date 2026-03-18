@@ -1,6 +1,6 @@
 {
   "name": "@dataworm/zero-shot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The AI-native React component library — Dual API components that LLMs generate correctly, every time",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
