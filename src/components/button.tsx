@@ -78,6 +78,12 @@ export interface ButtonProps
   loading?: boolean;
 
   /**
+   * Optional custom loading indicator rendered before content when `loading` is true.
+   * @example <Button loading loadingIndicator={<Spinner />} />
+   */
+  loadingIndicator?: React.ReactNode;
+
+  /**
    * Icon element to render alongside the label.
    * Position controlled by `iconPosition`.
    * @example <Button icon={<PlusIcon />} label="Add Item" />
@@ -101,6 +107,7 @@ const Button = createComponent<HTMLButtonElement, ButtonProps>(
       asChild = false,
       label,
       loading = false,
+      loadingIndicator,
       icon,
       iconPosition = "start",
       children,
@@ -109,8 +116,9 @@ const Button = createComponent<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    // Config API: use label as children if no children provided
-    const content = children ?? label;
+    // Config API: use label when children are not provided
+    const hasChildren = children !== undefined && children !== null;
+    const content = hasChildren ? children : label;
 
     if (asChild) {
       return (
@@ -127,12 +135,19 @@ const Button = createComponent<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         disabled={disabled || loading}
+        aria-busy={loading || undefined}
         {...props}
       >
-        {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-        {!loading && icon && iconPosition === "start" && icon}
-        {content && <span className={loading ? "opacity-70" : undefined}>{content}</span>}
-        {!loading && icon && iconPosition === "end" && icon}
+        {loading &&
+          (loadingIndicator ?? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />)}
+        {icon && iconPosition === "start" && icon}
+        {content &&
+          (hasChildren ? (
+            content
+          ) : (
+            <span className={loading ? "opacity-70" : undefined}>{content}</span>
+          ))}
+        {icon && iconPosition === "end" && icon}
       </button>
     );
   },
