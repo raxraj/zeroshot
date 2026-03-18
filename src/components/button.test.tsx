@@ -34,4 +34,28 @@ describe("Button", () => {
     render(<Button size="lg">Large</Button>);
     expect(screen.getByRole("button")).toHaveTextContent("Large");
   });
+
+  it("shows spinner and keeps icon visible while loading", () => {
+    render(
+      <Button loading icon={<svg data-testid="button-icon" aria-hidden="true" />}>
+        Sync
+      </Button>,
+    );
+
+    const button = screen.getByRole("button");
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute("aria-busy", "true");
+    expect(screen.getByTestId("button-icon")).toBeInTheDocument();
+    expect(button.querySelector(".animate-spin")).toBeTruthy();
+  });
+
+  it("supports a custom loading indicator", () => {
+    render(
+      <Button loading loadingIndicator={<span data-testid="custom-loader" />}>
+        Save
+      </Button>,
+    );
+
+    expect(screen.getByTestId("custom-loader")).toBeInTheDocument();
+  });
 });

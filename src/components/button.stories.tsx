@@ -114,6 +114,14 @@ export const Loading: Story = {
   ),
 };
 
+export const LoadingWithIcon: Story = {
+  args: {
+    label: "Start Sync",
+    loading: true,
+    icon: <Mail className="h-4 w-4" />,
+  },
+};
+
 export const WithClickHandler: Story = {
   args: {
     children: "Click me",
