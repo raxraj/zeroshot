@@ -380,6 +380,29 @@ export const zeroShotManifest: ZeroShotManifest = {
       ],
     },
     {
+      name: "RelationshipDiagram",
+      description: "Static schema diagram for visualizing tables and join relationships in multi-table queries.",
+      category: "data",
+      hasConfigApi: true,
+      importPath: "zero-shot",
+      subComponents: ["RelationshipDiagram.Table", "RelationshipDiagram.Column", "RelationshipDiagram.Join"],
+      props: [
+        { name: "config", type: "RelationshipDiagramConfig", required: false, description: "Config API: define tables and joins declaratively." },
+        { name: "layout", type: "'horizontal' | 'vertical'", required: false, defaultValue: "'horizontal'", description: "Choose side-by-side or stacked diagram layout." },
+        { name: "children", type: "ReactNode", required: false, description: "Compositional API using RelationshipDiagram.Table, .Column, and .Join." },
+      ],
+      examples: [
+        {
+          title: "Config API",
+          code: `<RelationshipDiagram config={{ tables: [{ name: "Customers", tableName: "customers", columns: ["id", "email"] }, { name: "Orders", tableName: "orders", columns: ["id", "customer_id"] }], joins: [{ leftTable: "customers", rightTable: "orders", leftKey: "id", rightKey: "customer_id", joinType: "INNER" }] }} />`,
+        },
+        {
+          title: "Compositional API",
+          code: `<RelationshipDiagram><RelationshipDiagram.Table name="Users" tableName="users"><RelationshipDiagram.Column name="id" highlighted /><RelationshipDiagram.Column name="email" /></RelationshipDiagram.Table><RelationshipDiagram.Join leftTable="users" rightTable="profiles" leftKey="id" rightKey="user_id" joinType="LEFT" /><RelationshipDiagram.Table name="Profiles" tableName="profiles"><RelationshipDiagram.Column name="user_id" /><RelationshipDiagram.Column name="bio" /></RelationshipDiagram.Table></RelationshipDiagram>`,
+        },
+      ],
+    },
+    {
       name: "Dialog",
       description: "Modal dialog with optional Config API for title, description and action buttons.",
       category: "overlay",
