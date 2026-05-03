@@ -208,6 +208,21 @@ export {
 export { DataTable } from "./components/data-table";
 export type { DataTableColumn, DataTableProps } from "./components/data-table";
 
+// RelationshipDiagram
+export { RelationshipDiagram } from "./components/relationship-diagram";
+export type {
+  RelationshipDiagramProps,
+  RelationshipDiagramConfig,
+  RelationshipDiagramTableConfig,
+  RelationshipDiagramColumnConfig,
+  RelationshipDiagramJoinConfig,
+  RelationshipDiagramTableProps,
+  RelationshipDiagramColumnProps,
+  RelationshipDiagramJoinProps,
+  RelationshipDiagramLayout,
+  RelationshipDiagramJoinType,
+} from "./components/relationship-diagram";
+
 // Drawer
 export {
   Drawer,
