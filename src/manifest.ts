@@ -11,7 +11,7 @@ import type { ZeroShotManifest } from "./types/manifest";
 
 export const zeroShotManifest: ZeroShotManifest = {
   name: "ZeroShot",
-  version: "0.1.0",
+  version: "0.1.4",
   description: "AI-native React component library with Dual API — every component works as composable JSX (for humans) and declarative config (for LLMs).",
   components: [
     // ─── AI-Native ────────────────────────────────────────────────
@@ -167,6 +167,92 @@ export const zeroShotManifest: ZeroShotManifest = {
       ],
       examples: [
         { title: "Spinner overlay", code: `<LoadingOverlay loading={isLoading} loadingText="Loading data..."><DataTable data={data} /></LoadingOverlay>` },
+      ],
+    },
+    {
+      name: "CreditMeter",
+      description: "Org credit usage meter with progress bar, grace/blocked states, and billing period reset date.",
+      category: "ai",
+      importPath: "zero-shot",
+      props: [
+        { name: "creditsUsed", type: "number", required: true, description: "Credits consumed this period" },
+        { name: "monthlyCredits", type: "number", required: true, description: "Monthly credit allocation" },
+        { name: "status", type: "'active' | 'grace' | 'blocked' | 'expired'", required: true, description: "Billing account status" },
+        { name: "periodEnd", type: "string", required: true, description: "ISO date when credits reset" },
+      ],
+      examples: [
+        { title: "Active usage", code: `<CreditMeter creditsUsed={450} monthlyCredits={1000} status="active" periodEnd="2026-06-01T00:00:00Z" />` },
+      ],
+    },
+    {
+      name: "UserCreditBadge",
+      description: "Compact per-user credit usage badge with tooltip breakdown.",
+      category: "ai",
+      importPath: "zero-shot",
+      props: [
+        { name: "creditsUsed", type: "number", required: true, description: "User credits used" },
+        { name: "monthlyCap", type: "number", required: true, description: "User monthly cap" },
+      ],
+      examples: [
+        { title: "Profile badge", code: `<UserCreditBadge creditsUsed={50} monthlyCap={200} />` },
+      ],
+    },
+    {
+      name: "PlanBadge",
+      description: "Colour-coded plan tier pill (Free, Pro, Pro+, Ultimate) with optional upgrade click.",
+      category: "ai",
+      importPath: "zero-shot",
+      props: [
+        { name: "plan", type: "'free' | 'pro' | 'pro_plus' | 'ultimate'", required: true, description: "Current plan tier" },
+        { name: "onUpgradeClick", type: "() => void", required: false, description: "Opens upgrade flow" },
+        { name: "href", type: "string", required: false, description: "Billing settings link" },
+      ],
+      examples: [
+        { title: "Pro+", code: `<PlanBadge plan="pro_plus" onUpgradeClick={openUpgrade} />` },
+      ],
+    },
+    {
+      name: "FeatureGatePrompt",
+      description: "Inline or overlay prompt when a feature requires a higher plan.",
+      category: "ai",
+      importPath: "zero-shot",
+      props: [
+        { name: "feature", type: "'quirk' | 'analyst' | 'web_search' | 'advanced_model'", required: true, description: "Locked feature" },
+        { name: "currentPlan", type: "string", required: true, description: "User's current plan slug" },
+        { name: "requiredPlan", type: "string", required: true, description: "Minimum plan slug" },
+        { name: "onUpgradeClick", type: "() => void", required: false, description: "Upgrade CTA handler" },
+      ],
+      examples: [
+        { title: "Analyst gate", code: `<FeatureGatePrompt feature="analyst" currentPlan="free" requiredPlan="pro_plus" onUpgradeClick={openUpgrade} />` },
+      ],
+    },
+    {
+      name: "GracePeriodBanner",
+      description: "Full-width amber banner when org credits are exhausted but grace sessions remain.",
+      category: "ai",
+      importPath: "zero-shot",
+      props: [
+        { name: "graceCreditsRemaining", type: "number", required: true, description: "Credits left in grace period" },
+        { name: "onContactClick", type: "() => void", required: false, description: "Top-up contact handler" },
+      ],
+      examples: [
+        { title: "Grace banner", code: `<GracePeriodBanner graceCreditsRemaining={120} onContactClick={openBilling} />` },
+      ],
+    },
+    {
+      name: "ModelSelector",
+      description: "AI model dropdown with credit multiplier labels and plan-gated locked models.",
+      category: "ai",
+      importPath: "zero-shot",
+      props: [
+        { name: "allowedModels", type: "ModelOption[]", required: true, description: "Models to list; set locked + requiredPlan for gated entries" },
+        { name: "selectedModelId", type: "string", required: true, description: "Currently selected model id" },
+        { name: "onChange", type: "(modelId: string) => void", required: true, description: "Selection callback" },
+        { name: "currentPlan", type: "string", required: false, description: "Plan slug for feature gate copy" },
+        { name: "onUpgradeClick", type: "() => void", required: false, description: "Upgrade handler from gate prompt" },
+      ],
+      examples: [
+        { title: "With locked model", code: `<ModelSelector selectedModelId="gpt-4o-mini" onChange={setModel} currentPlan="free" allowedModels={[{ id: "gpt-4o-mini", displayName: "GPT-4o Mini", creditMultiplier: 1 }, { id: "gpt-4o", displayName: "GPT-4o", creditMultiplier: 5, locked: true, requiredPlan: "pro_plus" }]} />` },
       ],
     },
 

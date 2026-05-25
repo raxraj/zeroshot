@@ -86,6 +86,34 @@ export type { EmptyStateProps } from "./components/empty-state";
 export { LoadingOverlay } from "./components/loading-overlay";
 export type { LoadingOverlayProps } from "./components/loading-overlay";
 
+// Billing — credit meters, plan badges, feature gates
+export { CreditMeter } from "./components/credit-meter";
+export type { CreditMeterProps } from "./components/credit-meter";
+export { UserCreditBadge } from "./components/user-credit-badge";
+export type { UserCreditBadgeProps } from "./components/user-credit-badge";
+export { PlanBadge } from "./components/plan-badge";
+export type { PlanBadgeProps } from "./components/plan-badge";
+export { FeatureGatePrompt } from "./components/feature-gate-prompt";
+export type { FeatureGatePromptProps } from "./components/feature-gate-prompt";
+export { GracePeriodBanner } from "./components/grace-period-banner";
+export type { GracePeriodBannerProps } from "./components/grace-period-banner";
+export { ModelSelector } from "./components/model-selector";
+export type { ModelSelectorProps, ModelOption } from "./components/model-selector";
+export type {
+  BillingStatus,
+  PlanTier,
+  GatedFeature,
+} from "./lib/billing";
+export {
+  formatPlanLabel,
+  formatFeatureLabel,
+  formatBillingPeriodEnd,
+  creditUsagePercent,
+  creditsRemaining,
+  formatCreditMultiplier,
+  GRACE_BANNER_DISMISS_KEY,
+} from "./lib/billing";
+
 // ═══════════════════════════════════════════════════════════════════
 //  Core UI Components (Dual API enhanced)
 // ═══════════════════════════════════════════════════════════════════
