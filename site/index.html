@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZeroShot — The AI native React component library</title>
+    <meta name="description" content="React components with a dual API for humans and LLMs. 9 AI native components, 40+ Radix primitives, strict TypeScript, tree-shakeable. MIT licensed." />
+    <meta property="og:title" content="ZeroShot — The AI native React component library" />
+    <meta property="og:description" content="React components with a dual API for humans and LLMs. 9 AI native components, 40+ Radix primitives, strict TypeScript, tree-shakeable." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <div id="root"><div style="padding:40px;color:#ff4444;font-family:sans-serif;font-size:24px;">Loading ZeroShot…</div></div>
+    <script>
+      window.addEventListener('error', function(e){ var r=document.getElementById('root'); if(r) r.innerHTML='<div style="padding:40px;color:#ff4444;font-size:20px;white-space:pre-wrap;">GLOBAL ERROR: '+(e.message||e)+'\n'+(e.filename||'')+':'+(e.lineno||'')+':'+(e.colno||'')+'</div>'; });
+      window.addEventListener('unhandledrejection', function(e){ var r=document.getElementById('root'); if(r) r.innerHTML='<div style="padding:40px;color:#ff4444;font-size:20px;white-space:pre-wrap;">UNHANDLED REJECTION: '+(e.reason && e.reason.message ? e.reason.message : e.reason)+'</div>'; });
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
